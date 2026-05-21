@@ -13,7 +13,7 @@ import CTASection      from './components/sections/CTASection'
 export default function HomePage() {
   return (
     <>
-      <Navbar />
+     
       <main>
          {/* 1 · Full-viewport hero with rotating slides */}
         <HeroSlider />
@@ -38,7 +38,7 @@ export default function HomePage() {
         <CTASection /> 
       </main>
 
-      <Footer />
+
     </>
   )
 }
