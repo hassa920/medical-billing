@@ -5,15 +5,15 @@ import Link from 'next/link'
 import { Activity, Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: 'Solutions',  href: '/' },
-  { label: 'Pricing',    href: '/pricing' },
-  { label: 'Company',    href: '/company' },
-  { label: 'Resources',  href: '/resource' },
+  { label: 'Home',      href: '/'         },
+  { label: 'Pricing',   href: '/pricing'  },
+  { label: 'Company',   href: '/company'  },
+  { label: 'Resources', href: '/resource' },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled,    setScrolled]    = useState(false)
+  const [mobileOpen,  setMobileOpen]  = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -25,31 +25,50 @@ export default function Navbar() {
     <header
       className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(7,10,18,0.94)' : 'rgba(7,10,18,0.5)',
+        background   : scrolled ? 'rgba(255,255,255,0.97)' : 'rgba(255,255,255,0.82)',
         backdropFilter: 'blur(24px)',
-        borderBottom: scrolled ? '1px solid rgba(0,240,255,0.08)' : '1px solid rgba(255,255,255,0.04)',
-        boxShadow: scrolled ? '0 4px 40px rgba(0,0,0,0.5)' : 'none',
+        WebkitBackdropFilter: 'blur(24px)',
+        borderBottom : scrolled
+          ? '1px solid rgba(0,60,130,0.10)'
+          : '1px solid rgba(0,60,130,0.05)',
+        boxShadow    : scrolled
+          ? '0 2px 24px rgba(0,60,130,0.09)'
+          : 'none',
       }}
     >
       <nav className="flex items-center justify-between px-5 md:px-8 py-3.5 max-w-7xl mx-auto">
 
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+        {/* ── Logo ── */}
+        <Link
+          href="/"
+          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}
+        >
+          {/* Icon box */}
           <div style={{
             width: 36, height: 36, borderRadius: 9,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(0,240,255,0.08)',
-            border: '1px solid rgba(0,240,255,0.28)',
-            boxShadow: '0 0 18px rgba(0,240,255,0.18)',
+            background  : 'rgba(0,105,217,0.08)',
+            border      : '1px solid rgba(0,105,217,0.28)',
+            boxShadow   : '0 2px 12px rgba(0,105,217,0.15)',
           }}>
-            <Activity size={17} style={{ color: '#00f0ff' }} />
+            <Activity size={17} style={{ color: '#0069d9' }} />
           </div>
+
+          {/* Wordmark */}
           <span style={{
-            fontFamily: 'var(--font-display)', fontSize: 19,
-            fontWeight: 700, letterSpacing: '0.12em',
-            color: 'rgba(255,255,255,0.92)',
+            fontFamily   : 'var(--font-display)',
+            fontSize     : 19,
+            fontWeight   : 700,
+            letterSpacing: '0.12em',
+            color        : 'rgba(15,30,60,0.92)',
           }}>
-            MEDI<span style={{ color: '#00f0ff', textShadow: '0 0 18px rgba(0,240,255,0.6)' }}>CORE</span>
+            MEDI
+            <span style={{
+              color     : '#0069d9',
+              textShadow: 'none',
+            }}>
+              CORE
+            </span>
           </span>
         </Link>
 
@@ -60,17 +79,21 @@ export default function Navbar() {
               key={href}
               href={href}
               style={{
-                padding: '7px 16px', borderRadius: 8, fontSize: 13,
-                color: 'rgba(255,255,255,0.6)', textDecoration: 'none',
-                fontFamily: 'var(--font-body)', fontWeight: 500,
-                transition: 'all 0.18s ease',
+                padding       : '7px 16px',
+                borderRadius  : 8,
+                fontSize      : 13,
+                color         : 'rgba(15,30,60,0.55)',
+                textDecoration: 'none',
+                fontFamily    : 'var(--font-body)',
+                fontWeight    : 500,
+                transition    : 'all 0.18s ease',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.color = '#ffffff'
-                e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+                e.currentTarget.style.color      = '#0069d9'
+                e.currentTarget.style.background = 'rgba(0,105,217,0.06)'
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.color = 'rgba(255,255,255,0.6)'
+                e.currentTarget.style.color      = 'rgba(15,30,60,0.55)'
                 e.currentTarget.style.background = 'transparent'
               }}
             >
@@ -93,9 +116,10 @@ export default function Navbar() {
         <button
           className="md:hidden p-2 rounded-lg"
           style={{
-            color: 'rgba(255,255,255,0.85)',
-            background: mobileOpen ? 'rgba(0,240,255,0.08)' : 'transparent',
-            border: `1px solid ${mobileOpen ? 'rgba(0,240,255,0.2)' : 'transparent'}`,
+            color     : 'rgba(15,30,60,0.75)',
+            background: mobileOpen ? 'rgba(0,105,217,0.07)' : 'transparent',
+            border    : `1px solid ${mobileOpen ? 'rgba(0,105,217,0.22)' : 'transparent'}`,
+            transition: 'all 0.18s ease',
           }}
           onClick={() => setMobileOpen(o => !o)}
           aria-label="Toggle menu"
@@ -107,10 +131,12 @@ export default function Navbar() {
       {/* ── Mobile menu ── */}
       {mobileOpen && (
         <div style={{
-          background: 'rgba(8,12,22,0.98)',
-          borderTop: '1px solid rgba(0,240,255,0.08)',
-          padding: '8px 16px 20px',
+          background  : 'rgba(255,255,255,0.99)',
+          borderTop   : '1px solid rgba(0,60,130,0.08)',
+          padding     : '8px 16px 20px',
           backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          boxShadow   : '0 8px 24px rgba(0,60,130,0.08)',
         }}>
           {NAV_LINKS.map(({ label, href }) => (
             <Link
@@ -118,21 +144,34 @@ export default function Navbar() {
               href={href}
               onClick={() => setMobileOpen(false)}
               style={{
-                display: 'block', padding: '13px 8px', fontSize: 14,
-                color: 'rgba(255,255,255,0.7)', textDecoration: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
-                fontFamily: 'var(--font-body)', fontWeight: 500,
+                display       : 'block',
+                padding       : '13px 8px',
+                fontSize      : 14,
+                color         : 'rgba(15,30,60,0.65)',
+                textDecoration: 'none',
+                borderBottom  : '1px solid rgba(0,60,130,0.06)',
+                fontFamily    : 'var(--font-body)',
+                fontWeight    : 500,
+                transition    : 'color 0.15s ease',
               }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#0069d9' }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(15,30,60,0.65)' }}
             >
               {label}
             </Link>
           ))}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
-            <button className="btn-cyber btn-cyber-ghost" style={{ width: '100%', justifyContent: 'center' }}>
+            <button
+              className="btn-cyber btn-cyber-ghost"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
               Watch Demo
             </button>
-            <button className="btn-cyber btn-cyber-primary" style={{ width: '100%', justifyContent: 'center' }}>
+            <button
+              className="btn-cyber btn-cyber-primary"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
               Request Demo
             </button>
           </div>
