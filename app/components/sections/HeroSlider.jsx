@@ -1,83 +1,66 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, Brain, Activity, Zap, Users, BarChart3 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const SLIDES = [
   {
     id: 0,
-    badge: 'NEW — AI Medical Scribe',
-    headline: ['Documentation That', 'Thinks Ahead'],
-    sub: 'AI that listens, codes, and orders automatically. Save 2+ hours of documentation per physician every day.',
-    ctaPrimary: { label: 'See AI Scribe', href: '/ai-scribe' },
-    ctaSecondary: { label: 'Watch 2-min Demo', href: '/demo' },
+    badge: 'CUSTOMER STORIES',
+    headline: ['Trusted By', '50,000+ Providers'],
+    sub: 'Hear how physicians, specialists, and clinical leaders have transformed their daily operations, eliminated hours of paperwork, and reclaimed time for patient care.',
+    ctaPrimary: { label: 'Read Customer Stories', href: '#testimonials', actionType: 'anchor' },
     accent: 'cyan',
     icon: Brain,
-    stat: { value: '2.4hrs', label: 'saved daily per physician' },
+    stat: { value: '99.2%', label: 'customer satisfaction rate' },
   },
   {
     id: 1,
-    badge: 'All-in-One Platform',
-    headline: ['From Check-In to', 'Check-Out — Automated'],
-    sub: 'EHR, billing, and patient engagement unified in one intelligent platform. Less complexity, more care.',
-    ctaPrimary: { label: 'Explore Platform', href: '/platform' },
-    ctaSecondary: { label: 'Request a Demo', href: '/demo' },
+    badge: 'Live Terminal Access',
+    headline: ['Request a Custom', 'Platform Sandbox Walkthrough'],
+    sub: 'Unlock private system modules. Preview our automated intake engines, AI scribe tools, and unified billing architectures configured directly for your workflow grid.',
+    ctaPrimary: { label: 'Request a Live Demo', href: '#demo', actionType: 'demo' },
     accent: 'cyan',
     icon: Activity,
-    stat: { value: '99.2%', label: 'uptime guaranteed' },
+    stat: { value: '1-on-1', label: 'expert guided session' },
   },
-  {
+{
     id: 2,
-    badge: 'AI Contact Center',
-    headline: ['Smarter Care.', 'Lower Costs. 24 / 7.'],
-    sub: 'Automate appointment booking, patient intake, and inquiries with AI — so your staff can focus on care.',
-    ctaPrimary: { label: 'Explore AI Center', href: '/ai-contact' },
-    ctaSecondary: { label: 'See How It Works', href: '/how-it-works' },
+    badge: 'AI & Technology Insight',
+    headline: ['AI Medical Scribe:', 'Revolutionizing Healthcare'],
+    sub: 'Discover how AI-powered documentation is saving physicians hours, optimizing clinical contact configurations, and improving accuracy in medical records.',
+    ctaPrimary: { label: 'Read Article', href: '/resource#blogs', actionType: 'route' },
     accent: 'green',
     icon: Zap,
-    stat: { value: '67%', label: 'reduction in no-shows' },
+    stat: { value: 'June 1', label: 'by Dr. Sarah Johnson' },
   },
   {
     id: 3,
     badge: 'Specialty EHR',
     headline: ['Built For Your', 'Specialty. Precisely.'],
     sub: '30+ specialty-specific workflows that simplify decisions, ensure compliance, and maximize every encounter.',
-    ctaPrimary: { label: 'View Specialties', href: '/specialty' },
-    ctaSecondary: { label: 'Book a Walkthrough', href: '/demo' },
+    ctaPrimary: { label: 'View Specialties', href: '#specialties', actionType: 'anchor' },
     accent: 'cyan',
     icon: Users,
     stat: { value: '30+', label: 'specialty-specific workflows' },
   },
-  {
-    id: 4,
-    badge: 'Revenue Cycle Management',
-    headline: ['Capture Every Dollar.', 'Eliminate Leakage.'],
-    sub: 'End-to-end RCM with AI-driven coding, automated denials management, and real-time revenue analytics.',
-    ctaPrimary: { label: 'Explore RCM', href: '/rcm' },
-    ctaSecondary: { label: 'Calculate Your ROI', href: '/roi' },
-    accent: 'green',
-    icon: BarChart3,
-    stat: { value: '96%', label: 'first-pass claim rate' },
-  },
+ 
 ]
 
-/* ── Animated ring decoration ── */
 function CyberOrb({ accent }) {
   const c   = accent === 'green' ? '#39ff14' : '#00f0ff'
   const rgb = accent === 'green' ? '57,255,20' : '0,240,255'
   return (
     <div className="relative w-full h-full flex items-center justify-center select-none pointer-events-none">
-      {/* Outer ring */}
       <svg viewBox="0 0 320 320" className="absolute rotate-ring opacity-25"
         style={{ width: 'clamp(200px, 40vw, 288px)', height: 'clamp(200px, 40vw, 288px)' }}>
         <circle cx="160" cy="160" r="150" fill="none" stroke={c} strokeWidth="1" strokeDasharray="6 14" />
       </svg>
-      {/* Middle ring */}
       <svg viewBox="0 0 260 260" className="absolute rotate-ring-reverse opacity-35"
         style={{ width: 'clamp(160px, 32vw, 224px)', height: 'clamp(160px, 32vw, 224px)' }}>
         <circle cx="130" cy="130" r="118" fill="none" stroke={c} strokeWidth="1.5" strokeDasharray="3 9" />
       </svg>
-      {/* Inner solid ring */}
       <div className="absolute rounded-full"
         style={{
           width: 'clamp(120px, 24vw, 160px)',
@@ -85,7 +68,6 @@ function CyberOrb({ accent }) {
           border: `1px solid rgba(${rgb},0.25)`,
           boxShadow: `0 0 40px rgba(${rgb},0.12), inset 0 0 40px rgba(${rgb},0.06)`
         }} />
-      {/* Core */}
       <div className="relative z-10 rounded-full flex items-center justify-center animate-float"
         style={{
           width: 'clamp(80px, 16vw, 96px)',
@@ -103,7 +85,6 @@ function CyberOrb({ accent }) {
           </svg>
         </div>
       </div>
-      {/* Dots on ring */}
       {[0, 72, 144, 216, 288].map((deg, i) => (
         <div key={i} className="absolute w-1.5 h-1.5 rounded-full pulse-glow"
           style={{
@@ -113,57 +94,80 @@ function CyberOrb({ accent }) {
             left: `${50 + 46 * Math.sin((deg * Math.PI) / 180)}%`,
           }} />
       ))}
-      {/* Data cards floating — hidden on small screens */}
-      <div className="absolute -top-6 right-0 lg:right-4 glass-card rounded-lg px-2.5 py-1.5 text-xs hidden sm:block"
-        style={{ border: `1px solid rgba(${rgb},0.15)` }}>
-        <div style={{ color: `rgba(${rgb},1)`, fontFamily: 'var(--font-display)', fontSize: 10, letterSpacing: '0.08em' }}>
-          LIVE MONITORING
-        </div>
-        <div style={{ color: 'var(--color-text-muted)', fontSize: 10 }} className="mt-0.5">
-          12 patients active
-        </div>
-      </div>
-      <div className="absolute bottom-2 -left-2 lg:-left-6 glass-card rounded-lg px-2.5 py-1.5 text-xs hidden sm:block"
-        style={{ border: `1px solid rgba(${rgb},0.15)` }}>
-        <div style={{ color: `rgba(${rgb},1)`, fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700 }}>
-          98.6°F
-        </div>
-        <div style={{ color: 'var(--color-text-muted)', fontSize: 10 }} className="mt-0.5">
-          avg. vitals normal
-        </div>
-      </div>
     </div>
   )
 }
 
-export default function HeroSlider() {
+export default function HeroSlider({ onOpenDemo }) {
   const [current, setCurrent] = useState(0)
   const [animKey, setAnimKey] = useState(0)
+  const autoPlayTimer = useRef(null)
+  const router = useRouter()
+
+  const clearTimer = useCallback(() => {
+    if (autoPlayTimer.current) {
+      clearInterval(autoPlayTimer.current)
+    }
+  }, [])
 
   const goTo = useCallback((idx) => {
     setCurrent(idx)
     setAnimKey(k => k + 1)
   }, [])
 
-  const next = useCallback(() => goTo((current + 1) % SLIDES.length), [current, goTo])
-  const prev = useCallback(() => goTo((current - 1 + SLIDES.length) % SLIDES.length), [current, goTo])
+  const next = useCallback(() => {
+    goTo((current + 1) % SLIDES.length)
+  }, [current, goTo])
+
+  const prev = useCallback(() => {
+    goTo((current - 1 + SLIDES.length) % SLIDES.length)
+  }, [current, goTo])
+
+  const resetAutoplay = useCallback(() => {
+    clearTimer()
+    autoPlayTimer.current = setInterval(next, 6000)
+  }, [next, clearTimer])
 
   useEffect(() => {
-    const timer = setInterval(next, 6000)
-    return () => clearInterval(timer)
-  }, [next])
+    resetAutoplay()
+    return () => clearTimer()
+  }, [resetAutoplay, clearTimer])
+
+  const handleCtaClick = (e, cta) => {
+    e.preventDefault()
+    
+    // Explicit safety checks for modal actions
+    if (cta.actionType === 'demo' || cta.href === '#demo') {
+      if (typeof onOpenDemo === 'function') {
+        onOpenDemo()
+      } else {
+        console.warn("onOpenDemo function was not properly passed down to HeroSlider component")
+      }
+      return
+    }
+
+    if (cta.actionType === 'anchor' || cta.href.startsWith('#')) {
+      const element = document.querySelector(cta.href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        window.history.pushState(null, '', cta.href)
+      } else {
+        router.push(`/${cta.href}`)
+      }
+    } else {
+      router.push(cta.href)
+    }
+  }
 
   const slide   = SLIDES[current]
   const isCyan  = slide.accent === 'cyan'
   const accentC = isCyan ? 'var(--color-neon-cyan)' : 'var(--color-neon-green)'
   const rgb     = isCyan ? '0,240,255' : '57,255,20'
-  const Icon    = slide.icon
 
   return (
     <section
       className="relative flex flex-col cyber-grid scanline-effect overflow-hidden"
       style={{
-        /* Navbar offset: contact bar (~32px) + main nav (~72px) = 104px */
         paddingTop: 'clamp(90px, 13vw, 120px)',
         minHeight: '100svh',
         background: `
@@ -173,30 +177,11 @@ export default function HeroSlider() {
         `,
       }}
     >
-      {/* Ambient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        <div className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 -top-20 -left-20"
-          style={{ background: 'radial-gradient(circle, rgba(0,240,255,0.6) 0%, transparent 70%)' }} />
-        <div className="absolute w-80 h-80 rounded-full blur-3xl opacity-[0.08] bottom-10 right-10"
-          style={{ background: `radial-gradient(circle, rgba(${rgb},0.5) 0%, transparent 70%)`, transition: 'background 0.6s ease' }} />
-      </div>
-
-      {/* ── Main content ── */}
       <div className="relative z-10 flex-1 flex items-center">
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8">
-
-          {/*
-            Layout:
-            Mobile  (< sm)  : single column, text only, orb hidden
-            Tablet  (sm–md) : single column, orb shown below text as small visual
-            Desktop (md+)   : two-column side by side
-          */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center py-10 sm:py-12 md:py-16 lg:py-20">
 
-            {/* ── Left: Text ── */}
             <div key={animKey} className="flex flex-col gap-4 sm:gap-5 lg:gap-6">
-
-              {/* Badge */}
               <div className="animate-fade-in-up">
                 <span className={`section-label ${slide.accent === 'green' ? 'section-label-green' : ''}`}
                   style={{ fontSize: 'clamp(9px, 1.8vw, 11px)' }}>
@@ -206,7 +191,6 @@ export default function HeroSlider() {
                 </span>
               </div>
 
-              {/* Headline */}
               <div className="animate-fade-in-up delay-100">
                 <h1 className="display-heading leading-tight" style={{
                   color: 'var(--color-text-primary)',
@@ -214,14 +198,12 @@ export default function HeroSlider() {
                 }}>
                   {slide.headline[0]}
                   <br />
-                  <span style={{ color: accentC }}
-                    className={isCyan ? 'text-glow-cyan' : 'text-glow-green'}>
+                  <span style={{ color: accentC }} className={isCyan ? 'text-glow-cyan' : 'text-glow-green'}>
                     {slide.headline[1]}
                   </span>
                 </h1>
               </div>
 
-              {/* Sub */}
               <p className="animate-fade-in-up delay-200 leading-relaxed"
                 style={{
                   color: 'var(--color-text-secondary)',
@@ -232,21 +214,27 @@ export default function HeroSlider() {
                 {slide.sub}
               </p>
 
-              {/* CTAs */}
               <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300">
-                <a href={slide.ctaPrimary.href}
-                  className={`btn-cyber ${isCyan ? 'btn-cyber-primary' : 'btn-cyber-green'}`}
-                  style={{ fontSize: 'clamp(11px, 1.5vw, 13px)' }}>
+                <button
+                  onClick={(e) => handleCtaClick(e, slide.ctaPrimary)}
+                  className={`btn-cyber ${isCyan ? 'btn-cyber-primary' : 'btn-cyber-green'} cursor-pointer`}
+                  style={{ fontSize: 'clamp(11px, 1.5vw, 13px)' }}
+                >
                   {slide.ctaPrimary.label}
                   <ArrowRight size={14} />
-                </a>
-                <a href={slide.ctaSecondary.href} className="btn-cyber btn-cyber-ghost"
-                  style={{ fontSize: 'clamp(11px, 1.5vw, 13px)' }}>
-                  {slide.ctaSecondary.label}
-                </a>
+                </button>
+
+                {slide.ctaSecondary && (
+                  <button
+                    onClick={(e) => handleCtaClick(e, slide.ctaSecondary)}
+                    className="btn-cyber btn-cyber-ghost cursor-pointer"
+                    style={{ fontSize: 'clamp(11px, 1.5vw, 13px)' }}
+                  >
+                    {slide.ctaSecondary.label}
+                  </button>
+                )}
               </div>
 
-              {/* Stat chip */}
               <div className="animate-fade-in-up delay-400 flex items-center gap-3">
                 <div className="h-px flex-shrink-0 w-10 sm:w-14"
                   style={{ background: `linear-gradient(90deg, transparent, rgba(${rgb},0.3))` }} />
@@ -260,71 +248,29 @@ export default function HeroSlider() {
                   </span>
                 </div>
               </div>
-
-              {/* Mobile orb — shown only on sm, hidden on md+ (where right col shows it) */}
-              <div key={`mob-orb-${animKey}`}
-                className="flex sm:hidden items-center justify-center mt-2 animate-fade-in-up delay-500"
-                style={{ height: 180 }}>
-                <CyberOrb accent={slide.accent} />
-              </div>
             </div>
 
-            {/* ── Right: Orb visual — tablet (sm) + desktop (md+) ── */}
-            <div key={`orb-${animKey}`}
-              className="hidden sm:flex md:flex items-center justify-center relative animate-fade-in-up delay-200"
-              style={{ height: 'clamp(240px, 35vw, 360px)' }}>
+            <div key={`orb-${animKey}`} className="hidden sm:flex md:flex items-center justify-center relative animate-fade-in-up delay-200" style={{ height: 'clamp(240px, 35vw, 360px)' }}>
               <CyberOrb accent={slide.accent} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Slide controls ── */}
+      {/* Control Navigation Elements */}
       <div className="relative z-10 pb-8 sm:pb-10 md:pb-12 flex items-center justify-center gap-3 sm:gap-6 px-4">
-
-        {/* Prev */}
-        <button onClick={prev} aria-label="Previous slide"
-          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all glass-card"
-          style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-text-muted)' }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,240,255,0.3)'; e.currentTarget.style.color = '#00f0ff' }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = 'var(--color-text-muted)' }}>
+        <button onClick={prev} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all glass-card cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-text-muted)' }}>
           <ChevronLeft size={15} />
         </button>
-
-        {/* Dots */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {SLIDES.map((s, i) => (
-            <button key={i} onClick={() => goTo(i)} aria-label={`Go to slide ${i + 1}`}
-              className="transition-all duration-300 rounded-full"
-              style={{
-                width: i === current ? 24 : 6,
-                height: 6,
-                background: i === current ? accentC : 'rgba(255,255,255,0.18)',
-                boxShadow: i === current ? `0 0 8px ${accentC}` : 'none',
-              }} />
+            <button key={i} onClick={() => goTo(i)} className="transition-all duration-300 rounded-full cursor-pointer" style={{ width: i === current ? 24 : 6, height: 6, background: i === current ? accentC : 'rgba(255,255,255,0.18)' }} />
           ))}
         </div>
-
-        {/* Next */}
-        <button onClick={next} aria-label="Next slide"
-          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all glass-card"
-          style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-text-muted)' }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,240,255,0.3)'; e.currentTarget.style.color = '#00f0ff' }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = 'var(--color-text-muted)' }}>
+        <button onClick={next} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all glass-card cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--color-text-muted)' }}>
           <ChevronRight size={15} />
         </button>
-
-        {/* Slide counter */}
-        <div className="text-xs ml-1 sm:ml-2" style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-display)', letterSpacing: '0.1em' }}>
-          <span style={{ color: accentC }}>{String(current + 1).padStart(2, '0')}</span>
-          {' / '}
-          {String(SLIDES.length).padStart(2, '0')}
-        </div>
       </div>
-
-      {/* ── Bottom gradient fade ── */}
-      <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, var(--color-cyber-base), transparent)' }} />
     </section>
   )
 }

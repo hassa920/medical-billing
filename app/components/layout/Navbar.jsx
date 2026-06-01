@@ -94,6 +94,7 @@ export default function Navbar() {
 
   return (
     <>
+    <header className="navbar">
       <nav
         style={{
           position: 'fixed',
@@ -101,7 +102,7 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 50,
-          background: scrolled ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.75)',
+          background: scrolled ? 'rgba(255,255,255,0.92)' : 'rgba(25,55,2,0.75)',
           backdropFilter: 'saturate(180%) blur(14px)',
           WebkitBackdropFilter: 'saturate(180%) blur(14px)',
           borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
@@ -782,6 +783,7 @@ export default function Navbar() {
           </button>
         </div>
       </aside>
+      </header>
     </>
   )
 }

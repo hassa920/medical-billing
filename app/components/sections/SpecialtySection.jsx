@@ -141,7 +141,7 @@ export default function SpecialtySection() {
             </div>
 
             <a
-              href="/specialty"
+              href="#specialties"
               className="btn-cyber btn-cyber-primary w-fit"
             >
               See All Specialties

@@ -40,7 +40,8 @@ export default function HomePage() {
     <>
       {/* Homepage */}
       <section id="homepage">
-        <HeroSlider />
+        {/* FIXED: Hooking up the custom openDemo event listener function to the slider */}
+        <HeroSlider onOpenDemo={() => window.dispatchEvent(new CustomEvent('openDemo'))} />
       </section>
 
       <StatsBar />

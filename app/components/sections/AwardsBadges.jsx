@@ -150,7 +150,7 @@ export default function AwardsBadges() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center mt-14 lg:mt-16">
+        {/* <div className="flex justify-center mt-14 lg:mt-16">
           <a
             href="/awards"
             className="btn-cyber btn-cyber-ghost"
@@ -160,7 +160,7 @@ export default function AwardsBadges() {
           >
             View All Awards
           </a>
-        </div>
+        </div> */}
       </div>
 
     </section>

@@ -204,7 +204,7 @@ export default function Testimonials() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center mt-14 lg:mt-16">
+        {/* <div className="flex justify-center mt-14 lg:mt-16">
           <a
             href="/testimonials"
             className="btn-cyber btn-cyber-ghost"
@@ -214,7 +214,7 @@ export default function Testimonials() {
           >
             Read All Customer Stories
           </a>
-        </div>
+        </div> */}
       </div>
 
           <div className="cyber-divider mt-10 mb-8 lg:mt-14 lg:mb-12" />
