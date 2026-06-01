@@ -2,6 +2,8 @@ import './globals.css'
 import { Rajdhani, Exo_2 } from 'next/font/google'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import RootLayoutClient from './components/layout/RootLayoutClient'
+
 const rajdhani = Rajdhani({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -26,14 +28,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${rajdhani.variable} ${exo2.variable}`}>
-   
       <body>
-           <Navbar/>
-        {children}
-        
-             <Footer/>
-        </body>
- 
+        <RootLayoutClient>
+          <Navbar />
+          {children}
+          <Footer />
+        </RootLayoutClient>
+      </body>
     </html>
   )
 }

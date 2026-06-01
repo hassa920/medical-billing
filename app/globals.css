@@ -3,13 +3,47 @@
 
 :root {
   /* ── Core backgrounds ── */
-  --color-cyber-base:    #f0f4f8;
-  --color-cyber-card:    rgba(255, 255, 255, 0.85);
-  --color-cyber-surface: rgba(255, 255, 255, 0.97);
+  --color-cyber-base:      #ffffff;
+  --color-cyber-card:      rgba(255, 255, 255, 0.582);
+  --color-cyber-surface:   rgba(255, 255, 255, 0.096);
+  --color-cyber-surface-lift: rgba(255, 255, 255, 0.92);
+  --color-cyber-surface-soft: rgba(255, 255, 255, 0.75);
+
+  --color-neon-cyan-soft:   rgba(0, 105, 217, 0.08);
+  --color-neon-cyan-muted:  rgba(0, 105, 217, 0.07);
+  --color-neon-cyan-faint:  rgba(0, 105, 217, 0.06);
+  --color-neon-cyan-subtle: rgba(0, 105, 217, 0.09);
+  --color-neon-cyan-accent: rgba(0, 105, 217, 0.1);
+  --color-neon-cyan-strong: rgba(0, 105, 217, 0.88);
+  --color-neon-cyan-border: rgba(0, 105, 217, 0.28);
+  --color-neon-cyan-shadow: rgba(0, 105, 217, 0.18);
+  --color-neon-cyan-emphasis: rgba(0, 105, 217, 0.35);
+
+  --color-text-faint: rgba(15, 30, 60, 0.35);
+  --color-text-soft:  rgba(15, 30, 60, 0.45);
+  --color-overlay-dark: rgba(15, 30, 60, 0.5);
 
   /* ── Brand accents (medical blue + teal) ── */
   --color-neon-cyan:     #0069d9;   /* primary blue  */
   --color-neon-green:    #0aaa6e;   /* secondary teal-green */
+
+  --color-neon-cyan-soft:   rgba(0, 105, 217, 0.08);
+  --color-neon-cyan-muted:  rgba(0, 105, 217, 0.07);
+  --color-neon-cyan-faint:  rgba(0, 105, 217, 0.06);
+  --color-neon-cyan-subtle: rgba(0, 105, 217, 0.09);
+  --color-neon-cyan-accent: rgba(0, 105, 217, 0.1);
+  --color-neon-cyan-border: rgba(0, 105, 217, 0.28);
+  --color-neon-cyan-border-muted: rgba(0, 105, 217, 0.16);
+  --color-neon-cyan-border-soft: rgba(0, 105, 217, 0.12);
+  --color-neon-cyan-emphasis: rgba(0, 105, 217, 0.35);
+  --color-neon-cyan-shadow:  rgba(0, 105, 217, 0.18);
+  --color-neon-cyan-strong:  rgba(0, 105, 217, 0.88);
+
+  --color-text-strong:    rgba(15,  30,  60,  0.72);
+  --color-text-medium:    rgba(15,  30,  60,  0.6);
+  --color-text-soft:      rgba(15,  30,  60,  0.45);
+  --color-text-faint:     rgba(15,  30,  60,  0.35);
+  --color-overlay-dark:   rgba(15,  30,  60,  0.5);
 
   /* ── Text ── */
   --color-text-primary:   rgba(15,  30,  60,  0.92);
@@ -40,15 +74,12 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* ─── Layout ─── */
-.cyber-grid {
-  background-image:
+   background-image:
     linear-gradient(rgba(0, 60, 130, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 60, 130, 0.045) 1px, transparent 1px);
   background-size: 44px 44px;
 }
+
 
 .glass-card {
   background: var(--color-cyber-card);
@@ -174,10 +205,10 @@ body {
   background: linear-gradient(90deg, transparent, rgba(0,105,217,0.22), transparent);
 }
 
-.cyber-divider-subtle {
+/* .cyber-divider-subtle {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0, 60, 130, 0.1), transparent);
-}
+} */
 
 /* ─── Animations ─── */
 @keyframes scanline {

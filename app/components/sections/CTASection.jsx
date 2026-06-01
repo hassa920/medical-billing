@@ -1,84 +1,187 @@
+'use client'
+
 import { ArrowRight, CalendarDays, Phone } from 'lucide-react'
 
-export default function CTASection() {
+export default function CTASection({ onOpenDemo }) {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="relative rounded-2xl overflow-hidden cyber-grid"
+    <section className="relative py-5 lg:py- overflow-hidden">
+      {/* Ambient Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[500px] rounded-full blur-[180px] opacity-[0.06]"
           style={{
-            background: 'rgba(10,15,28,0.7)',
-            border: '1px solid rgba(0,240,255,0.15)',
-            boxShadow: '0 0 60px rgba(0,240,255,0.08), inset 0 0 80px rgba(0,240,255,0.03)',
-          }}>
+            background:
+              'radial-gradient(circle, rgba(0,105,217,0.55) 0%, transparent 70%)',
+          }}
+        />
+      </div>
 
-          {/* Glow blobs */}
-          <div className="absolute inset-0 pointer-events-none" aria-hidden>
-            <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-[80px] opacity-20"
-              style={{ background: 'radial-gradient(circle, rgba(0,240,255,0.8) 0%, transparent 70%)' }} />
-            <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full blur-[80px] opacity-15"
-              style={{ background: 'radial-gradient(circle, rgba(57,255,20,0.7) 0%, transparent 70%)' }} />
-            {/* Corner accents */}
-            <div className="absolute top-0 left-0 w-20 h-20"
-              style={{ background: 'linear-gradient(135deg, rgba(0,240,255,0.08) 0%, transparent 60%)', borderRadius: '16px 0 0 0' }} />
-            <div className="absolute bottom-0 right-0 w-20 h-20"
-              style={{ background: 'linear-gradient(315deg, rgba(57,255,20,0.06) 0%, transparent 60%)', borderRadius: '0 0 16px 0' }} />
-            {/* Top/bottom border glow lines */}
-            <div className="absolute top-0 inset-x-0 h-px"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(0,240,255,0.5), rgba(57,255,20,0.3), transparent)' }} />
-            <div className="absolute bottom-0 inset-x-0 h-px"
-              style={{ background: 'linear-gradient(90deg, transparent, rgba(57,255,20,0.3), rgba(0,240,255,0.5), transparent)' }} />
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 relative z-10">
+        <div
+          className="glass-card rounded-[32px] overflow-hidden relative"
+          style={{
+            border: '1px solid rgba(0,105,217,0.12)',
+            boxShadow:
+              '0 10px 50px rgba(0,105,217,0.08), 0 2px 12px rgba(0,105,217,0.05)',
+          }}
+        >
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div
+              className="absolute top-0 left-0 w-40 h-40"
+              style={{
+                background:
+                  'radial-gradient(circle at top left, rgba(0,105,217,0.08), transparent 70%)',
+              }}
+            />
+
+            <div
+              className="absolute bottom-0 right-0 w-52 h-52"
+              style={{
+                background:
+                  'radial-gradient(circle at bottom right, rgba(10,170,110,0.08), transparent 70%)',
+              }}
+            />
+
+            <div
+              className="absolute top-0 left-0 right-0 h-px"
+              style={{
+                background:
+                  'linear-gradient(90deg, transparent, rgba(0,105,217,0.35), transparent)',
+              }}
+            />
+
+            <div
+              className="absolute bottom-0 left-0 right-0 h-px"
+              style={{
+                background:
+                  'linear-gradient(90deg, transparent, rgba(10,170,110,0.35), transparent)',
+              }}
+            />
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex flex-col items-center text-center gap-6 px-8 py-20">
-            <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--color-neon-cyan)' }}>
-              <span className="w-1.5 h-1.5 rounded-full pulse-glow" style={{ background: 'var(--color-neon-cyan)', boxShadow: '0 0 6px var(--color-neon-cyan)' }} />
-              <span className="section-label">Ready to Transform Your Practice?</span>
-            </div>
+          <div className="relative z-10 px-8 md:px-14 lg:px-20 py-20 lg:py-24 text-center flex flex-col items-center">
+            {/* Label */}
+            <span className="section-label mb-6">
+              <span
+                className="w-1.5 h-1.5 rounded-full pulse-glow"
+                style={{
+                  background: 'var(--color-neon-cyan)',
+                }}
+              />
+              Ready To Transform Your Practice?
+            </span>
 
-            <h2 className="display-heading text-4xl md:text-5xl xl:text-6xl max-w-3xl"
-              style={{ color: 'var(--color-text-primary)', lineHeight: 1.1 }}>
-              Start Your Journey to{' '}
-              <span className="text-glow-cyan" style={{ color: 'var(--color-neon-cyan)' }}>
+            {/* Heading */}
+            <h2
+              className="display-heading mb-6"
+              style={{
+                fontSize: 'clamp(3rem, 6vw, 5.75rem)',
+                lineHeight: '1',
+                maxWidth: '1000px',
+              }}
+            >
+              Start Your Journey To{' '}
+              <span
+                className="text-glow-cyan"
+                style={{
+                  color: 'var(--color-neon-cyan)',
+                }}
+              >
                 Smarter Healthcare
               </span>{' '}
               Today
             </h2>
 
-            <p className="text-base max-w-xl leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-              Join 50,000+ providers who have streamlined operations, boosted revenue,
-              and elevated patient care with MediCore. Your personalized demo takes under 30 minutes.
+            {/* Description */}
+            <p
+              style={{
+                color: 'var(--color-text-secondary)',
+                maxWidth: '760px',
+                fontSize: 'clamp(1rem,1.3vw,1.15rem)',
+                lineHeight: '1.9',
+              }}
+            >
+              Join more than 50,000 healthcare providers who have streamlined
+              operations, enhanced patient experiences, and accelerated revenue
+              growth with MediCore&apos;s intelligent platform.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4 mt-2">
-              <button className="btn-cyber btn-cyber-primary text-sm gap-2">
-                <CalendarDays size={16} />
-                Book a Free Demo
-                <ArrowRight size={15} />
-              </button>
-              <a href="tel:+16466638030" className="btn-cyber btn-cyber-ghost text-sm gap-2">
-                <Phone size={15} />
-                Call +1 646 663 8030
-              </a>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+  <button
+    className="btn-cyber btn-cyber-primary"
+    onClick={onOpenDemo}
+  >
+    <CalendarDays size={16} />
+    Book A Free Demo
+    <ArrowRight size={15} />
+  </button>
 
-            {/* Trust line */}
-            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-              No credit card required &nbsp;·&nbsp; HIPAA compliant &nbsp;·&nbsp; Cancel anytime
+  <a
+    href="tel:+16466638030"
+    className="btn-cyber btn-cyber-ghost"
+  >
+    <Phone size={15} />
+    Call +1 646 663 8030
+  </a>
+</div>
+
+            {/* Trust Line */}
+            <p
+              className="mt-6"
+              style={{
+                color: 'var(--color-text-muted)',
+                fontSize: '0.85rem',
+              }}
+            >
+              No credit card required · HIPAA compliant · Enterprise-grade
+              security
             </p>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap justify-center gap-8 mt-6 pt-6 w-full max-w-lg"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            {/* Metrics */}
+            <div
+              className="flex flex-wrap justify-center gap-10 lg:gap-14 mt-10 pt-8 w-full max-w-3xl"
+              style={{
+                borderTop: '1px solid rgba(0,60,130,0.08)',
+              }}
+            >
               {[
-                { v: '25+', l: 'Years trusted' },
-                { v: '50K+', l: 'Active providers' },
-                { v: '<30min', l: 'Demo duration' },
-              ].map((s, i) => (
-                <div key={i} className="flex flex-col items-center">
-                  <span className="stat-number text-2xl">{s.v}</span>
-                  <span className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>{s.l}</span>
+                {
+                  value: '25+',
+                  label: 'Years Trusted',
+                },
+                {
+                  value: '50K+',
+                  label: 'Active Providers',
+                },
+                {
+                  value: '<30 Min',
+                  label: 'Demo Duration',
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="flex flex-col items-center"
+                >
+                  <div
+                    className="stat-number"
+                    style={{
+                      fontSize: '2rem',
+                    }}
+                  >
+                    {item.value}
+                  </div>
+
+                  <div
+                    style={{
+                      color: 'var(--color-text-muted)',
+                      fontSize: '0.85rem',
+                      marginTop: '0.25rem',
+                    }}
+                  >
+                    {item.label}
+                  </div>
                 </div>
               ))}
             </div>

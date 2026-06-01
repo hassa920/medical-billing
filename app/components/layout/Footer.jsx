@@ -3,32 +3,27 @@ import Link from 'next/link'
 import { Activity, Mail, Phone, ArrowUpRight } from 'lucide-react'
 
 const FOOTER_LINKS = {
-  Solutions: [
-    { label: 'Electronic Health Records', href: '/ehr' },
-    { label: 'Practice Management',       href: '/practice' },
-    { label: 'Revenue Cycle Management',  href: '/rcm' },
-    { label: 'AI Medical Scribe',         href: '/ai-scribe' },
-    { label: 'Patient Portal',            href: '/portal' },
-    { label: 'Mobile EHR',               href: '/mobile' },
-    { label: 'Credentialing Services',    href: '/credentialing' },
+  Home: [
+    {   label: 'Homepage',
+      href: '#homepage', },
+    {  label: 'Specialties',
+      href: '#specialties', },
+    { label: 'Testimonials',
+      href: '#testimonials', },
+    { label: 'Request Demo',
+      href: '#request-demo', },
   ],
   Company: [
-    { label: 'About MediCore',       href: '/about' },
-    { label: 'Awards & Recognition', href: '/awards' },
-    { label: 'Partner Program',      href: '/partners' },
-    { label: 'Newsroom',             href: '/news' },
-    { label: 'Careers',              href: '/careers' },
-    { label: 'Support & Services',   href: '/support' },
-    { label: '25+ Years of Excellence', href: '/history' },
+    { label: 'About MediCore',       href: '/company#about' },
+    { label: 'Awards & Recognition', href: '/company#awards' },
+    { label: 'FAQs',      href: '/company#faqs' },
+    { label: 'Contact Us',             href: '/company#contact' },
+  
   ],
   Resources: [
-    { label: 'Resource Center',      href: '/resources' },
-    { label: 'Case Studies',         href: '/case-studies' },
-    { label: 'Webinars',             href: '/webinars' },
-    { label: 'Blog',                 href: '/blog' },
-    { label: 'Whitepapers',          href: '/whitepapers' },
-    { label: 'MIPS & Quality Reporting', href: '/mips' },
-    { label: 'Customer Stories',     href: '/testimonials' },
+    { label: 'Blogs & Articles',     href: '/resource#blogs' },
+    { label: 'Customer Stories',     href: '/resource#stories' },
+
   ],
 }
 
@@ -62,85 +57,18 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background  : '#ffffff',
-        borderTop   : '1px solid rgba(0,60,130,0.10)',
-        position    : 'relative',
-        overflow    : 'hidden',
-        fontFamily  : "var(--font-body, 'Exo 2', sans-serif)",
+        background: 'var(--color-cyber-base)',
+        borderTop: '1px solid var(--border-subtle)',
+        position: 'relative',
+        overflow: 'hidden',
+        fontFamily: 'var(--font-body)',
       }}
     >
-      {/* Top gradient accent line */}
-      <div style={{
-        position  : 'absolute',
-        top       : 0,
-        left      : 0,
-        right     : 0,
-        height    : '2px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,105,217,0.35) 30%, rgba(10,170,110,0.35) 70%, transparent 100%)',
-      }} />
-
-      {/* Subtle grid overlay */}
-      <div
-        className="cyber-grid"
-        style={{ position:'absolute', inset:0, opacity:0.6, pointerEvents:'none' }}
-      />
-
-      {/* ── Newsletter / CTA strip ── */}
-      <div style={{
-        background  : 'linear-gradient(135deg, rgba(0,105,217,0.07) 0%, rgba(10,170,110,0.05) 100%)',
-        borderBottom: '1px solid rgba(0,60,130,0.08)',
-        position    : 'relative',
-      }}>
-        <div style={{
-          maxWidth     : 1152,
-          margin       : '0 auto',
-          padding      : '28px 32px',
-          display      : 'flex',
-          flexWrap     : 'wrap',
-          alignItems   : 'center',
-          justifyContent: 'space-between',
-          gap          : 20,
-        }}>
-          <div>
-            <p style={{
-              fontFamily  : "var(--font-display, 'Rajdhani', sans-serif)",
-              fontSize    : 17,
-              fontWeight  : 700,
-              color       : 'rgba(15,30,60,0.92)',
-              margin      : 0,
-              letterSpacing: '0.03em',
-            }}>
-              Ready to transform your practice?
-            </p>
-            <p style={{
-              fontSize: 13,
-              color   : 'rgba(15,30,60,0.50)',
-              margin  : '3px 0 0',
-            }}>
-              Join 25,000+ providers trusting MediCore for smarter care delivery.
-            </p>
-          </div>
-
-          <div style={{ display:'flex', gap:10, flexWrap:'wrap' }}>
-            <button
-              className="btn-cyber btn-cyber-ghost"
-              style={{ fontSize: 12, padding: '9px 20px' }}
-            >
-              Watch Demo
-            </button>
-            <button
-              className="btn-cyber btn-cyber-primary"
-              style={{ fontSize: 12, padding: '9px 20px', display:'flex', alignItems:'center', gap:6 }}
-            >
-              Request Demo
-              <ArrowUpRight size={13} />
-            </button>
-          </div>
-        </div>
-      </div>
+   
+      
 
       {/* ── Main footer body ── */}
-      <div style={{ maxWidth:1152, margin:'0 auto', padding:'52px 32px 0', position:'relative' }}>
+      <div style={{ maxWidth: 'calc(1120px + 2rem)', margin: '0 auto', padding: '52px 32px 0', position:'relative' }}>
         <div style={{
           display            : 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
@@ -159,27 +87,27 @@ export default function Footer() {
                 display        : 'flex',
                 alignItems     : 'center',
                 justifyContent : 'center',
-                background     : 'rgba(0,105,217,0.08)',
-                border         : '1px solid rgba(0,105,217,0.28)',
-                boxShadow      : '0 2px 12px rgba(0,105,217,0.15)',
+                background     : 'var(--color-neon-cyan-soft)',
+                border         : '1px solid var(--color-neon-cyan-border)',
+                boxShadow      : '0 2px 12px var(--color-neon-cyan-shadow)',
               }}>
-                <Activity size={18} style={{ color: '#0069d9' }} />
+                <Activity size={18} style={{ color: 'var(--color-neon-cyan)' }} />
               </div>
               <span style={{
-                fontFamily   : "var(--font-display, 'Rajdhani', sans-serif)",
+                fontFamily   : 'var(--font-display)',
                 fontSize     : 20,
                 fontWeight   : 700,
                 letterSpacing: '0.12em',
-                color        : 'rgba(15,30,60,0.92)',
+                color        : 'var(--color-text-primary)',
               }}>
-                MEDI<span style={{ color: '#0069d9' }}>CORE</span>
+                MEDI<span style={{ color: 'var(--color-neon-cyan)' }}>CORE</span>
               </span>
             </div>
 
             <p style={{
               fontSize  : 13,
               lineHeight: 1.7,
-              color     : 'rgba(15,30,60,0.50)',
+              color     : 'var(--color-text-secondary)',
               maxWidth  : 260,
               margin    : 0,
             }}>
@@ -201,25 +129,25 @@ export default function Footer() {
                     alignItems    : 'center',
                     gap           : 9,
                     fontSize      : 13,
-                    color         : 'rgba(15,30,60,0.55)',
+                    color         : 'var(--color-text-secondary)',
                     textDecoration: 'none',
                     transition    : 'color .18s ease',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#0069d9'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(15,30,60,0.55)'}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--color-neon-cyan)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-secondary)'}
                 >
                   <div style={{
                     width         : 28,
                     height        : 28,
                     borderRadius  : 7,
-                    background    : 'rgba(0,105,217,0.07)',
-                    border        : '1px solid rgba(0,105,217,0.16)',
+                    background    : 'var(--color-neon-cyan-muted)',
+                    border        : '1px solid var(--color-neon-cyan-border-muted)',
                     display       : 'flex',
                     alignItems    : 'center',
                     justifyContent: 'center',
                     flexShrink    : 0,
                   }}>
-                    <Icon size={12} style={{ color: '#0069d9' }} />
+                    <Icon size={12} style={{ color: 'var(--color-neon-cyan)' }} />
                   </div>
                   {text}
                 </a>
@@ -240,23 +168,23 @@ export default function Footer() {
                     display       : 'flex',
                     alignItems    : 'center',
                     justifyContent: 'center',
-                    background    : 'rgba(255,255,255,0.75)',
-                    border        : '1px solid rgba(0,60,130,0.12)',
-                    color         : 'rgba(15,30,60,0.45)',
+                    background    : 'var(--color-cyber-surface-soft)',
+                    border        : '1px solid var(--border-subtle)',
+                    color         : 'var(--color-text-soft)',
                     transition    : 'all .20s ease',
                     textDecoration: 'none',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background   = 'rgba(0,105,217,0.08)'
-                    e.currentTarget.style.borderColor  = 'rgba(0,105,217,0.35)'
-                    e.currentTarget.style.color        = '#0069d9'
+                    e.currentTarget.style.background   = 'var(--color-neon-cyan-soft)'
+                    e.currentTarget.style.borderColor  = 'var(--color-neon-cyan-emphasis)'
+                    e.currentTarget.style.color        = 'var(--color-neon-cyan)'
                     e.currentTarget.style.boxShadow    = '0 4px 14px rgba(0,105,217,0.18)'
                     e.currentTarget.style.transform    = 'translateY(-2px)'
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.background   = 'rgba(255,255,255,0.75)'
-                    e.currentTarget.style.borderColor  = 'rgba(0,60,130,0.12)'
-                    e.currentTarget.style.color        = 'rgba(15,30,60,0.45)'
+                    e.currentTarget.style.background   = 'var(--color-cyber-surface-soft)'
+                    e.currentTarget.style.borderColor  = 'var(--border-subtle)'
+                    e.currentTarget.style.color        = 'var(--color-text-soft)'
                     e.currentTarget.style.boxShadow    = 'none'
                     e.currentTarget.style.transform    = 'none'
                   }}
@@ -277,7 +205,7 @@ export default function Footer() {
                   width    : 3,
                   height   : 14,
                   borderRadius: 2,
-                  background: heading === 'Resources' ? '#0aaa6e' : '#0069d9',
+                  background: heading === 'Resources' ? 'var(--color-neon-green)' : 'var(--color-neon-cyan)',
                   flexShrink: 0,
                 }} />
                 <h4 style={{
@@ -286,7 +214,7 @@ export default function Footer() {
                   fontWeight  : 700,
                   letterSpacing:'0.14em',
                   textTransform:'uppercase',
-                  color       : heading === 'Resources' ? '#088f5c' : '#0058b8',
+                  color       : heading === 'Resources' ? 'var(--color-neon-green)' : 'var(--color-neon-cyan)',
                   margin      : 0,
                 }}>
                   {heading}
@@ -309,15 +237,15 @@ export default function Footer() {
                       href={link.href}
                       style={{
                         fontSize      : 13,
-                        color         : 'rgba(15,30,60,0.50)',
+                        color         : 'var(--color-text-secondary)',
                         textDecoration: 'none',
                         transition    : 'color .16s ease',
                         display       : 'inline-flex',
                         alignItems    : 'center',
                         gap           : 5,
                       }}
-                      onMouseEnter={e => e.currentTarget.style.color = '#0069d9'}
-                      onMouseLeave={e => e.currentTarget.style.color = 'rgba(15,30,60,0.50)'}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--color-neon-cyan)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-secondary)'}
                     >
                       {link.label}
                     </Link>
@@ -337,9 +265,9 @@ export default function Footer() {
           gap            : 14,
           marginTop      : 44,
           padding        : '18px 0 24px',
-          borderTop      : '1px solid rgba(0,60,130,0.09)',
+          borderTop      : '1px solid var(--border-subtle)',
         }}>
-          <p style={{ fontSize:12, color:'rgba(15,30,60,0.38)', margin:0 }}>
+          <p style={{ fontSize:12, color:'var(--color-text-muted)', margin:0 }}>
             © 1997–{new Date().getFullYear()} MediCore Healthcare Technologies, Inc. All rights reserved.
           </p>
 
@@ -350,12 +278,12 @@ export default function Footer() {
                 href="#"
                 style={{
                   fontSize      : 12,
-                  color         : 'rgba(15,30,60,0.38)',
+                  color         : 'var(--color-text-muted)',
                   textDecoration: 'none',
                   transition    : 'color .16s ease',
                 }}
-                onMouseEnter={e => e.currentTarget.style.color = '#0069d9'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(15,30,60,0.38)'}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--color-neon-cyan)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-muted)'}
               >
                 {item}
               </Link>

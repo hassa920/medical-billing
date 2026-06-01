@@ -1,44 +1,66 @@
-
-import Navbar          from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
+"use client"
+import { useEffect, useRef } from 'react'
 import HeroSlider from './components/sections/HeroSlider'
 import StatsBar from './components/sections/StatsBar'
-import SolutionsGrid from './components/sections/SolutionsGrid'
-import AIFeatures from './components/sections/AIFeature'
 import SpecialtySection from './components/sections/SpecialtySection'
 import Testimonials from './components/sections/Testimonials'
 import AwardsBadges from './components/sections/AwardsBadges'
-import CTASection      from './components/sections/CTASection'
+import CTASection from './components/sections/CTASection'
 
 export default function HomePage() {
+  const requestDemoRef = useRef(null)
+
+  useEffect(() => {
+    // Auto-scroll and open demo when section comes into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Dispatch custom event to notify layout to open demo
+            window.dispatchEvent(new CustomEvent('openDemo'))
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    const currentRef = requestDemoRef.current
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef)
+      }
+    }
+  }, [])
+
   return (
     <>
-     
-      <main>
-         {/* 1 · Full-viewport hero with rotating slides */}
+      {/* Homepage */}
+      <section id="homepage">
         <HeroSlider />
-        {/* 2 · Key metrics row */}
-        <StatsBar />
-        {/* 3 · Core product tiles */}
-        <SolutionsGrid />
+      </section>
 
-        {/* 4 · AI-powered features highlight */}
-        <AIFeatures />
+      <StatsBar />
 
-        {/* 5 · Specialty workflows */}
+      {/* Specialties */}
+      <section id="specialties">
         <SpecialtySection />
+      </section>
 
-        {/* 6 · Social proof */}
+      {/* Testimonials */}
+      <section id="testimonials">
         <Testimonials />
+      </section>
 
-        {/* 7 · Industry awards */}
-        <AwardsBadges />
+      <AwardsBadges />
 
-        {/* 8 · Demo CTA banner */}
-        <CTASection /> 
-      </main>
-
-
+      {/* Request Demo */}
+      <section id="request-demo" ref={requestDemoRef}>
+         <CTASection onOpenDemo={() => window.dispatchEvent(new CustomEvent('openDemo'))} />
+      </section>
     </>
   )
 }
