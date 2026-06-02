@@ -3,6 +3,7 @@ import { Rajdhani, Exo_2 } from 'next/font/google'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import RootLayoutClient from './components/layout/RootLayoutClient'
+import MedicalLoader from './components/Loader/MedicalLoader'
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -30,9 +31,12 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${rajdhani.variable} ${exo2.variable}`}>
       <body>
         <RootLayoutClient>
-          <Navbar />
+          <MedicalLoader>       
+               <Navbar />
           {children}
           <Footer />
+          </MedicalLoader>
+
         </RootLayoutClient>
       </body>
     </html>

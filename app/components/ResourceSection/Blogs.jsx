@@ -1,71 +1,12 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Calendar, User, ArrowRight } from 'lucide-react'
-
-const BLOG_POSTS = [
-  {
-    id: 1,
-    title: 'AI Medical Scribe: Revolutionizing Healthcare Documentation',
-    excerpt: 'Discover how AI-powered documentation is saving physicians hours and improving accuracy in medical records.',
-    author: 'Dr. Sarah Johnson',
-    date: 'June 1, 2024',
-    category: 'AI & Technology',
-    image: 'linear-gradient(135deg, var(--color-neon-cyan), rgba(0,105,217,0.4))',
-    slug: 'ai-medical-scribe',
-  },
-  {
-    id: 2,
-    title: 'Medical Billing 2024: Best Practices for Revenue Optimization',
-    excerpt: 'Learn the latest strategies for maximizing revenue cycle management and reducing claim denials.',
-    author: 'John Mitchell',
-    date: 'May 28, 2024',
-    category: 'Revenue Cycle',
-    image: 'linear-gradient(135deg, rgba(10,170,110,0.6), rgba(10,170,110,0.2))',
-    slug: 'medical-billing-2024',
-  },
-  {
-    id: 3,
-    title: 'EHR Implementation: A Complete Guide for Practice Managers',
-    excerpt: 'Step-by-step guide to successfully implementing an Electronic Health Record system in your practice.',
-    author: 'Emily Roberts',
-    date: 'May 25, 2024',
-    category: 'Implementation',
-    image: 'linear-gradient(135deg, rgba(0,169,217,0.5), rgba(0,105,217,0.3))',
-    slug: 'ehr-implementation-guide',
-  },
-  {
-    id: 4,
-    title: 'Telemedicine Integration: Expanding Your Patient Reach',
-    excerpt: 'How to seamlessly integrate telemedicine into your practice workflow and patient experience.',
-    author: 'Dr. Michael Chen',
-    date: 'May 22, 2024',
-    category: 'Telemedicine',
-    image: 'linear-gradient(135deg, var(--color-neon-cyan), rgba(0,105,217,0.4))',
-    slug: 'telemedicine-integration',
-  },
-  {
-    id: 5,
-    title: 'HIPAA Compliance: Protecting Patient Data in 2024',
-    excerpt: 'Essential compliance requirements and best practices for maintaining HIPAA standards.',
-    author: 'Legal Team',
-    date: 'May 20, 2024',
-    category: 'Compliance',
-    image: 'linear-gradient(135deg, rgba(10,170,110,0.6), rgba(10,170,110,0.2))',
-    slug: 'hipaa-compliance-2024',
-  },
-  {
-    id: 6,
-    title: 'Practice Management Software: Feature Comparison Guide',
-    excerpt: 'Comprehensive comparison of top practice management solutions for modern healthcare facilities.',
-    author: 'Sarah Williams',
-    date: 'May 18, 2024',
-    category: 'Practice Management',
-    image: 'linear-gradient(135deg, rgba(0,169,217,0.5), rgba(0,105,217,0.3))',
-    slug: 'pm-software-comparison',
-  },
-]
+import { BLOG_POSTS } from './blogData'
 
 export default function Blogs() {
+  const router = useRouter()
+
   return (
     <section id="blogs" style={{ position: 'relative', padding: '80px 0', background: 'var(--color-cyber-base)' }}>
       {/* Gradient background */}
@@ -120,7 +61,7 @@ export default function Blogs() {
               letterSpacing: '-0.02em',
             }}
           >
-            Insights & Best Practices
+            Insights &amp; Best Practices
           </h2>
 
           <p
@@ -149,6 +90,7 @@ export default function Blogs() {
           {BLOG_POSTS.map((post) => (
             <article
               key={post.id}
+              onClick={() => router.push(`/resource/${post.slug}`)}
               style={{
                 borderRadius: '16px',
                 background: 'var(--color-cyber-card)',
@@ -276,8 +218,8 @@ export default function Blogs() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{ textAlign: 'center' }}>
+     
+        {/* <div style={{ textAlign: 'center' }}>
           <button
             style={{
               padding: '12px 28px',
@@ -304,7 +246,7 @@ export default function Blogs() {
           >
             View All Articles
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   )

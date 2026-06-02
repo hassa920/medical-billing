@@ -317,7 +317,7 @@ export default function CustomerStories() {
 
         {/* CTA */}
         <div style={{ textAlign: 'center' }}>
-          <button
+          {/* <button
             style={{
               padding: '12px 28px',
               borderRadius: '10px',
@@ -342,7 +342,7 @@ export default function CustomerStories() {
             }}
           >
             View All Stories
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
