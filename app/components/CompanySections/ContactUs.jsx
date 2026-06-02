@@ -99,15 +99,51 @@ export default function ContactUs() {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const errs = validate()
-    if (Object.keys(errs).length > 0) { setErrors(errs); return }
-    setLoading(true)
-    await new Promise(r => setTimeout(r, 1400))
-    setLoading(false)
-    setSubmitted(true)
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const errs = validate();
+  if (Object.keys(errs).length > 0) {
+    setErrors(errs);
+    return;
   }
+
+  try {
+    setLoading(true);
+
+    console.log("Submitting form..."); // 👈 MUST SHOW IN BROWSER CONSOLE
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+  console.log("Response received", res);
+console.log("Status:", res.status);
+console.log("OK:", res.ok);
+
+const data = await res.json();
+
+console.log("Response Data JSON:");
+console.log(JSON.stringify(data, null, 2));
+
+    if (!res.ok) {
+      throw new Error(data.message);
+    }
+    console.log("SUCCESS SCREEN SHOULD APPEAR NOW");
+
+    // setSubmitted(true);
+    alert("API SUCCESS");
+    setForm(INITIAL_FORM);
+  } catch (err) {
+    console.error("Submit error:", err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const focusStyle = (e) => (e.target.style.borderColor = 'var(--border-cyan)')
   const blurStyle  = (e) => (e.target.style.borderColor = 'var(--border-subtle)')
