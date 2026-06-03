@@ -109,13 +109,45 @@ export default function RequestDemoForm({ open, onClose }) {
     setStep(s => s + 1)
   }
 
-  const handleSubmit = async () => {
-    if (!validate2()) return
-    setSub(true)
-    await new Promise(r => setTimeout(r, 1600))
-    setSub(false)
-    setStep(3)
+// Replace your existing handleSubmit function in RequestDemoForm with this:
+
+const handleSubmit = async () => {
+  if (!validate2()) return;
+  setSub(true);
+
+  try {
+    const res = await fetch("/api/demo-request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      // Show the server's error message (optional: set it to an error state)
+      console.error("Submission failed:", data.message);
+      setErrors({ submit: data.message || "Something went wrong. Please try again." });
+      return;
+    }
+
+    // Success → go to step 3
+    setStep(3);
+
+  } catch (err) {
+    console.error("Network error:", err);
+    setErrors({ submit: "Network error. Please check your connection and try again." });
+  } finally {
+    setSub(false);
   }
+};
+
+// Also add this below your existing error displays (e.g. just above the Back/Submit buttons in Step 2):
+{errors.submit && (
+  <p style={{ fontFamily:"'Exo 2',sans-serif", fontSize:12, color:'#dc2626', marginBottom:12 }}>
+    {errors.submit}
+  </p>
+)}
 
   if (!open) return null
 
