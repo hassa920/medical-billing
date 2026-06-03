@@ -136,7 +136,7 @@ console.log(JSON.stringify(data, null, 2));
     console.log("SUCCESS SCREEN SHOULD APPEAR NOW");
 
     // setSubmitted(true);
-    alert("API SUCCESS");
+    // alert("API SUCCESS");
     setForm(INITIAL_FORM);
   } catch (err) {
     console.error("Submit error:", err);

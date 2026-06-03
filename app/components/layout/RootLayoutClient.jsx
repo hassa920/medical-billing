@@ -17,23 +17,22 @@ export default function RootLayoutClient({ children }) {
   const [demoOpen, setDemoOpen] = useState(false)
 
   useEffect(() => {
-    // Handle hash navigation for #demo
     const handleHashChange = () => {
-      const hash = window.location.hash.split('#').filter(Boolean)[0]
+      const hash = window.location.hash.replace('#', '')
       if (hash === 'demo') {
         setDemoOpen(true)
+        window.history.replaceState(null, '', window.location.pathname)
       }
     }
 
-    // Check initial hash on mount
-    handleHashChange()
+    const handleOpenDemo = () => setDemoOpen(true)
 
     window.addEventListener('hashchange', handleHashChange)
-    window.addEventListener('openDemo', () => setDemoOpen(true))
+    window.addEventListener('openDemo', handleOpenDemo)
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange)
-      window.removeEventListener('openDemo', () => setDemoOpen(true))
+      window.removeEventListener('openDemo', handleOpenDemo)
     }
   }, [])
 
