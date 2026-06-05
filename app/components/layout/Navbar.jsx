@@ -11,7 +11,7 @@ const NAV_LINKS = [
     label: 'Home',
     href: '/',
     submenu: [
-      { label: 'Homepage',     href: '/#homepage',     icon: Activity,   description: 'Overview of the MediCore platform.' },
+      // { label: 'Homepage',     href: '/#homepage',     icon: Activity,   description: 'Overview of the MediCore platform.' },
       { label: 'Specialties',  href: '/#specialties',  icon: Award,      description: 'Purpose-built workflows for every specialty.' },
       { label: 'Testimonials', href: '/#testimonials', icon: HelpCircle, description: 'See what providers say about MediCore.' },
       { label: 'Request Demo', href: '/#demo',         icon: Phone,      description: 'Book a personalized product walkthrough.' },
@@ -140,7 +140,7 @@ export default function Navbar() {
                 fontFamily: 'var(--font-display)',
                 fontWeight: 700,
                 fontSize: 17,
-                color: 'var(--color-text-primary)',
+                color: '#ffffff',
                 letterSpacing: '0.04em',
               }}
             >
@@ -187,7 +187,7 @@ export default function Navbar() {
                         padding: '7px 14px',
                         borderRadius: 8,
                         fontSize: 13.5,
-                        color: isOpen ? 'var(--color-neon-cyan)' : 'rgba(15,30,60,0.6)',
+                        color: isOpen ? 'var(--color-neon-cyan)' : 'rgba(255,255,255,0.85)',
                         background: isOpen ? 'rgba(0,105,217,0.07)' : 'transparent',
                         border: 'none',
                         cursor: 'pointer',
@@ -204,7 +204,7 @@ export default function Navbar() {
                       }}
                       onMouseLeave={e => {
                         if (!isOpen) {
-                          e.currentTarget.style.color = 'rgba(15,30,60,0.6)'
+                          e.currentTarget.style.color = 'rgba(255,255,255,0.85)'
                           e.currentTarget.style.background = 'transparent'
                         }
                       }}
@@ -352,7 +352,7 @@ export default function Navbar() {
                       padding: '7px 14px',
                       borderRadius: 8,
                       fontSize: 13.5,
-                      color: 'var(--color-text-secondary)',
+                      color: 'rgba(255,255,255,0.85)',
                       background: 'transparent',
                       border: 'none',
                       cursor: 'pointer',
@@ -365,7 +365,7 @@ export default function Navbar() {
                       letterSpacing: '0.01em',
                     }}
                     onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-neon-cyan)'; e.currentTarget.style.background = 'var(--color-neon-cyan-faint)' }}
-                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-secondary)'; e.currentTarget.style.background = 'transparent' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; e.currentTarget.style.background = 'transparent' }}
                   >
                     {link.label}
                   </button>
@@ -381,7 +381,7 @@ export default function Navbar() {
                     padding: '7px 14px',
                     borderRadius: 8,
                     fontSize: 13.5,
-                    color: 'var(--color-text-secondary)',
+                    color: 'rgba(255,255,255,0.85)',
                     background: 'transparent',
                     textDecoration: 'none',
                     fontFamily: 'var(--font-body)',
@@ -390,7 +390,7 @@ export default function Navbar() {
                     letterSpacing: '0.01em',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-neon-cyan)'; e.currentTarget.style.background = 'rgba(0,105,217,0.06)' }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-secondary)'; e.currentTarget.style.background = 'transparent' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; e.currentTarget.style.background = 'transparent' }}
                 >
                   {link.label}
                 </Link>
@@ -435,11 +435,11 @@ export default function Navbar() {
               height: 40,
               borderRadius: 9,
               background: 'transparent',
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid rgba(255,255,255,0.25)',
               cursor: 'pointer',
             }}
           >
-            {mobileOpen ? <X size={20} color="var(--color-text-primary)" /> : <Menu size={20} color="var(--color-text-primary)" />}
+            {mobileOpen ? <X size={20} color="#ffffff" /> : <Menu size={20} color="#ffffff" />}
           </button>
         </div>
       </nav>
@@ -680,7 +680,7 @@ export default function Navbar() {
                     padding: '12px 14px',
                     borderRadius: 10,
                     fontSize: 14,
-                    color: 'var(--color-text-strong)',
+                    color: 'var(--color-text-secondary)',
                     background: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
